@@ -1,0 +1,264 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
+
+*{
+  box-sizing: border-box;
+}
+
+body{
+  color: rgb(150,150,150);
+  background-color: rgba(33, 33, 33, 1);
+  font-family: 'Roboto', sans-serif;
+}
+
+#drum-machine{
+  margin: 20vh 0 20vh 0;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.drum-pads{
+  display: flex;
+  width: 330px;
+  height: 330px;
+  height: auto;
+  flex-wrap: wrap;
+}
+
+
+.drum-pad{
+  flex: 0 0 100px;
+  height: 100px;
+  border-radius: 10%;
+  margin: 5px;
+  overflow: hidden;
+  background-color: rgb(0, 244, 110);
+  transition-duration: 0.15s;
+}
+
+.pad-active{
+  box-shadow: inset 0 0 30px 20px rgba(59, 28, 28, 0.65);
+  position:relative;
+}
+
+.pad-active::after{
+  content: ''; 
+  display: block;
+  top:-25px;
+  left: -25px;
+  width:150px;
+  height: 150px;
+  border-radius: 50%;
+  position:absolute;
+  box-shadow: inset 0 0 13px 50px rgba(0, 0, 0, 0.2);
+  transition-duration: 0s;
+}
+
+
+.pad-inactive{
+  background-color: rgb(17, 80, 40);
+  transition: 0.1s;
+  position:relative;
+}
+
+.pad-inactive::after{
+  content: ''; 
+  display: block;
+  top:-25px;
+  left: -25px;
+  width:150px;
+  height: 150px;
+  border-radius: 40%;
+  position:absolute;
+  box-shadow: inset 0 0 13px 40px  rgba(21, 97, 49, 0.678);
+  transition-duration: 0.2s;
+}
+
+.rec-pad{
+  background-color: rgb(244, 220, 0);
+}
+
+.rec-pad-inactive{
+  background-color: rgb(17, 80, 40);
+}
+
+.control-pad-inactive{
+  background-color: rgb(33,33,33);
+  border: 1px solid rgb(100,100,100);
+}
+
+.control-pad-active{
+  background-color: rgb(33,33,33);
+  border: 1px solid rgb(244, 220, 0) !important;
+}
+
+.drum-pad:hover{
+  border: 1px solid #191;
+  cursor: pointer;
+}
+
+
+/* Mode Control */
+#control-container{
+  position: relative;
+}
+
+.mode-control{
+  display:flex;
+  list-style: none;
+  width: 330px;
+  padding:5px;
+  justify-content: space-between;
+}
+
+.mode-control li{
+  text-align: center;
+  flex: 0 0 100px;
+  border: 1px solid rgb(100,100,100);
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.mode-control li:hover{
+  background-color: rgb(66,66,66);
+}
+
+.color-active{
+  background-color: rgb(44,44,44);
+}
+
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: rgb(66,66,66); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+
+
+#rec-board{
+  display: flex;
+  width: 330px;
+  height: 330px;
+}
+
+.space-between{
+  display:flex;
+  justify-content: space-between;
+  padding: 1px 5px 1px 5px;
+}
+
+.space-between p{
+  margin: 0px;
+}
+
+.list-description{
+  border-bottom: 2px solid rgb(66,66,66);
+  padding: 5px;
+}
+
+.list-container{
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  height: 330px;
+  margin:5px;
+  padding:0px;
+  border: 1px solid rgb(100,100,100);
+  font-size: 12px;
+}
+
+.record-list{
+  height: auto;
+  padding:0px;
+  list-style: none;
+  overflow-y:auto;
+  margin:0;
+  font-size: 12px;
+}
+
+
+.record-list-name{
+  margin:0;
+  text-align: center;
+  font-size:16px;
+}
+
+.list-item-1{
+  background-color: rgb(44,44,44);
+}
+
+.list-item-2{
+  background-color: rgb(33,33,33);
+}
+
+.list-item-playing{
+  background-color: rgb(244, 220, 0);
+  color: black;
+}
+
+#interval-list{
+  margin:5px;
+  font-size: 16px;
+  padding: 0;
+  list-style:none;
+}
+
+input{
+  border-radius: 0;
+  color: inherit;
+  background-color: inherit;
+  border: none;
+  font-size: 16px;
+  text-align: right;
+  height: 20px;
+}
+
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type=number]:focus{
+  outline:none;
+  border: 1px solid rgb(244, 220, 0);
+}
+
+.rec-btn{
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  border: 1px solid rgb(100,100,100);
+  flex: 0 0 100px;
+  height: 30px;
+  line-height: 16px;
+  padding-top: 7px;
+  border-radius: 5%;
+  margin: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.rec-btn-active{
+  border-color:red;
+  background-color: rgb(66, 66, 66);
+}
+
+.rec-btn:hover{
+  background-color: rgb(66,66,66);
+}
+
+.disabled-btn{
+  background-color: rgb(66,66,66);
+  cursor:auto;
+}
