@@ -41,8 +41,6 @@ function ModeControl({changeControlMode, controlMode}) {
         
     }, [controlMode])
 
-    console.log(changeControlMode)
-
     return(
         <div>
             <ul className="mode-control">

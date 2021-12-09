@@ -1,16 +1,13 @@
-import {useEffect, useState} from 'react'
+import {useState} from 'react'
 import {connect} from 'react-redux'
-import fccTest from '../fCC_test'
 import '../App.css';
 import DrumPads from './DrumPads'
 import RecordPads from './RecordPads'
 import ControlPads from './ControlPads'
-import RecBoard from './RecBoard'
 import ModeControl from './ModeControl';
 
-function App({controlMode}) {
-  //Test from fCC project
-  useEffect(fccTest, []);
+function App() {
+
   
   const [displayValue, setDisplay] = useState('Press any key');
 

@@ -139,7 +139,7 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
 
     function recPlayCallback(i, arr, key, pad){
         setRecPlaing(REC_PLAING_REM, key, i);
-        if(i+1==arr.length) {
+        if(i+1===arr.length) {
             pad.classList=padClasses.inactive
         }
     }
@@ -213,7 +213,7 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
         let activeRecKey = recKeyStatus.activeRecKey;
 
         if(activeRecKey && Object.keys(audioKeys).includes(key)){
-            if(activeRecKey != recKeyStatus.oldRecKey){
+            if(activeRecKey !== recKeyStatus.oldRecKey){
                 resetRecData(recData, setRecData, activeRecKey);
                 recData[activeRecKey].recStart = Date.now();
             }
@@ -225,7 +225,7 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
             console.log(Object.keys(recData).filter(rec => recData[rec].key === key))
             let recDataKey = `rec${key}`
             let pad = document.getElementById(recDataKey.toUpperCase());
-            if(controlMode != RECORD && onGoing[recDataKey]){
+            if(controlMode !== RECORD && onGoing[recDataKey]){
                 soundInter[recDataKey] ?
                 clearOngoing(recDataKey)
                 :
