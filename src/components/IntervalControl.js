@@ -32,7 +32,7 @@ function IntervalControl({onGoingPads, intervals, changeInterValue}) {
         
     </li>)
     return(
-        <div>
+        <div className='interval-container'>
             <div className="space-between list-description">
                 <p>key:</p>
                 <p>interval [ms]</p>

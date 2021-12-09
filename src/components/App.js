@@ -12,16 +12,22 @@ function App() {
   const [displayValue, setDisplay] = useState('Press any key');
 
   return (
-    <div className="App">
-      <div id="drum-machine">
-        <div>
-          {/* <div id="display">{displayValue}</div> */}
-          <DrumPads setDisplay={setDisplay}/>
-          <RecordPads />
+    <div className="app-container">
+      <div className="main-container">
+        <div className="top-section">
+          <div className="flex-container">
+            <ModeControl />
+          </div>
         </div>
-        <div>
-          <ModeControl />
-          <ControlPads />
+        <div className="bottom-section">
+          <div className="section-container">
+            {/* <div id="display">{displayValue}</div> */}
+            <DrumPads setDisplay={setDisplay}/>
+            <RecordPads />
+          </div>
+          <div className="section-container">
+            <ControlPads />
+          </div>
         </div>
         
       </div>

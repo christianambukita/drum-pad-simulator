@@ -10,10 +10,39 @@ body{
   font-family: 'Roboto', sans-serif;
 }
 
-#drum-machine{
-  margin: 20vh 0 20vh 0;
+.flex-container{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.top-section{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+}
+.top-section >div{
+  width: 50%;
+}
+
+.bottom-section{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .drum-pads{
@@ -24,7 +53,18 @@ body{
   flex-wrap: wrap;
 }
 
+.section-container:first-child{
+  align-self: flex-end;
+}
 
+.section-container{
+  margin: 10px;
+  height: 440px;
+}
+
+.interval-container{
+  width: 330px;
+}
 .drum-pad{
   flex: 0 0 100px;
   height: 100px;
