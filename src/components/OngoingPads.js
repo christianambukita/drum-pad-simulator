@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import modeActionCreator from '../actions/controlActionCreator'
 import {REC_MODE, ONGOING_MODE} from '../actions/actionTypes'
 import styleBender from '../utils'
-
+import "../css/DrumPads.css"
 
 
 

@@ -3,7 +3,7 @@ import IntervalControl from './IntervalControl'
 import OngoingPads from './OngoingPads'
 import RecBoard from './RecBoard'
 import {RECORD, PLAY, INTERVAL} from '../actions/actionTypes'
-
+import "../css/DrumPads.css"
 
 function ComponentPicker(mode){
     switch(mode){

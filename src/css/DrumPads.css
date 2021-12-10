@@ -1,0 +1,46 @@
+.pad-container{
+    width: 100px;
+    height: 100px;
+}
+
+.drum-pad{
+    width: 76px;
+    height: 76px;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: var(--retro-main);
+    transition-duration: 0.15s;
+    color:black;
+    border: 2px solid var(--retro-border)
+  }
+  
+  .pad-border{
+    box-sizing: border-box;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    border-radius: 10px;
+    border: 2px solid var(--retro-border);
+    background: linear-gradient(135deg, var(--retro-main) 45%, var(--retro-shadow-1) 55%);
+  }
+
+  .pad-active{
+    transform: scale(.95);
+  }
+  
+  
+.pad-border:hover{
+    cursor: pointer;
+    transform: scale(.98);
+}
+
+
+  
+  .pad-inactive{
+    transition: 0.1s;
+    position:relative;
+  }
+  

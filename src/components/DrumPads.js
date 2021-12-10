@@ -3,6 +3,7 @@ import {useEffect, useState} from 'react'
 import { nanoid } from 'nanoid'
 import {connect} from 'react-redux'
 import {RECORD} from '../actions/actionTypes'
+import "../css/DrumPads.css"
 
 function play(key){
     return new Promise(function(resolve, reject) {
@@ -131,14 +132,19 @@ function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
     }, [onGoingMode, soundInter, intervals, controlMode])
     
     const pads = Object.keys(audioKeys).map(key => 
-        <div 
-            id={key.toLocaleUpperCase()}
-            className={classInactive}
-            key={key}
-            onClick={() => handleKeypress(key)}
-        >
-            {key}
-        </div>);
+        <div className="pad-container flex-container">
+            <div className="pad-border">
+                <div
+                    id={key.toLocaleUpperCase()}
+                    className={classInactive}
+                    key={key}
+                    onClick={() => handleKeypress(key)}
+                >
+                    {key}
+                </div>
+            </div>
+        </div>
+    );
 
     return (
         <div className="drum-pads">

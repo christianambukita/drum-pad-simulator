@@ -83,7 +83,11 @@ function RecBoard({records, recMode, changeRecMode, recPlaying}) {
     return(
         <div className='rec-board-container'>
             <div id='rec-board'>
-                {recordLists.map((record, index) => <div key={index}>{record}</div>)}
+                {recordLists.map((record, index) => 
+                    <div className="rec-display-border">
+                        <div className="rec-display-shadow" key={index}>{record}</div>
+                    </div>)
+                }
             </div>
             <div className="drum-pads">
                 {objectToControlButtons(records, changeRecMode, 'rec-btn')}

@@ -5,7 +5,7 @@ import setRecordActionCreator from '../actions/setRecordActionCreator'
 import {RECORD, INTERVAL, REC_PLAING_ADD, REC_PLAING_REM} from '../actions/actionTypes'
 import recPlaingAction from '../actions/recPlaingAction'
 import styleBender from '../utils'
-
+import "../css/DrumPads.css"
 
 function play(key){
     return new Promise(function(resolve, reject) {
@@ -241,15 +241,19 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
         <div>
             <div className="drum-pads">
                 {Object.keys(recData).map(key =>    
-                    <div 
-                        id={key.toUpperCase()}
-                        className={padClasses.classDisabled}
-                        key={key}
-                        onClick={() => handleKeypress(recData[key].key)}
-                    >      
-                        {key}
-                    </div>)
-                }
+                    <div className="pad-container flex-container">
+                        <div className="pad-border">
+                            <div
+                                id={key.toUpperCase()}
+                                className={padClasses.classDisabled}
+                                key={key}
+                                onClick={() => handleKeypress(recData[key].key)}
+                            >
+                                {key}
+                            </div>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     )
