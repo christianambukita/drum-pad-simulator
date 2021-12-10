@@ -3,6 +3,7 @@ import {useEffect} from 'react'
 import modeActionCreator from '../actions/controlActionCreator'
 import {REC_MODE} from '../actions/actionTypes'
 import styleBender from '../utils'
+import '../css/RecBoard.css'
 
 function objectToControlButtons(object, callback, initClassName){
 
@@ -80,7 +81,7 @@ function RecBoard({records, recMode, changeRecMode, recPlaying}) {
 
 
     return(
-        <div>
+        <div className='rec-board-container'>
             <div id='rec-board'>
                 {recordLists.map((record, index) => <div key={index}>{record}</div>)}
             </div>

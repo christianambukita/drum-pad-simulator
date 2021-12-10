@@ -1,0 +1,76 @@
+
+#rec-board{
+    display: flex;
+    width: 330px;
+    height: 330px;
+  }
+
+.list-description{
+    border-bottom: 2px solid rgb(66,66,66);
+    padding: 5px;
+}
+
+.list-container{
+    display: flex;
+    flex-direction: column;
+    width: 100px;
+    height: 330px;
+    margin:5px;
+    padding:0px;
+    border: 1px solid rgb(100,100,100);
+    font-size: 12px;
+}
+
+.list-item-1{
+    background-color: rgb(44,44,44);
+}
+
+.list-item-2{
+    background-color: rgb(33,33,33);
+}
+
+.list-item-playing{
+    background-color: rgb(244, 220, 0);
+    color: black;
+}
+
+.record-list{
+    height: auto;
+    padding:0px;
+    list-style: none;
+    overflow-y:auto;
+    margin:0;
+    font-size: 12px;
+}
+  
+  
+.record-list-name{
+    margin:0;
+    text-align: center;
+    font-size:16px;
+}
+
+.rec-btn{
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid rgb(100,100,100);
+    flex: 0 0 100px;
+    height: 30px;
+    line-height: 16px;
+    padding-top: 7px;
+    border-radius: 5%;
+    margin: 5px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+  
+
+.rec-btn-active{
+    border-color:red;
+    background-color: rgb(66, 66, 66);
+}
+  
+.rec-btn:hover{
+    background-color: rgb(66,66,66);
+}
