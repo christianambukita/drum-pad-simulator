@@ -170,7 +170,8 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
             
             
             setTimeout(() => {
-                console.log("playing: ", rec)
+                console.log(`${key}-${i}`)
+                document.getElementById(`${key}-${i}`).scrollIntoView(false)
                 play(rec.key).then(()=>{
                     
                     isOngoing? 

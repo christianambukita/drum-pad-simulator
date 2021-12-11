@@ -60,9 +60,12 @@
     font-size: 1.1em;
 
     -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    scrollbar-width: none ;  /* Firefox */
 }
   
+.record-list::-webkit-scrollbar {
+    display: none;
+  }
   
 .record-list-name{
     padding-top: 5px;
