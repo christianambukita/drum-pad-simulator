@@ -8,6 +8,10 @@
     --retro-shadow-3: hsl(0, 0%, 83%);
     --retro-display:  hsl(0, 0%, 14%);
     --retro-border:  hsl(0, 0%, 36%);
+    --btn-diode-active: hsl(39, 100%, 50%);
+    --list-item-active: hsl(39, 75%, 50%);
+    --btn-diode-inactive: hsl(35, 100%, 11%);
+    --btn-color-1: hsl(0, 0%, 50%);
 }
 
 
@@ -18,7 +22,7 @@
 .list-description{
     border-bottom: 2px solid rgb(66,66,66);
     padding: 5px;
-    font-size: 1.3em;
+    font-size: 1em;
 }
 
 .list-container{
@@ -28,7 +32,6 @@
     width: 100px;
     height: 330px;
     padding:0px;
-    font-size: 12px;
     background-color: var(--retro-display);
 }
 
@@ -41,8 +44,10 @@
 }
 
 .list-item-playing{
-    background-color: rgb(244, 220, 0);
+    background-color: var(--list-item-active);
+    box-shadow: 0 0 1px 2px var(--btn-diode-active);
     color: black;
+    z-index: 10;
 }
 
 .record-list{
@@ -51,7 +56,10 @@
     list-style: none;
     overflow-y:auto;
     margin:0;
-    font-size: 12px;
+    font-size: 1.1em;
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
   
   
@@ -59,33 +67,9 @@
     padding-top: 5px;
     margin:0;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 2em;
 }
 
-.rec-btn{
-    font-size: 16px;
-    font-weight: 600;
-    text-align: center;
-    border: 1px solid rgb(100,100,100);
-    flex: 0 0 100px;
-    height: 30px;
-    line-height: 16px;
-    padding-top: 7px;
-    border-radius: 5%;
-    margin: 5px;
-    overflow: hidden;
-    margin-top: 10px;
-}
-  
-
-.rec-btn-active{
-    border-color:red;
-    background-color: rgb(66, 66, 66);
-}
-  
-.rec-btn:hover{
-    background-color: rgb(66,66,66);
-}
 
 .rec-board-container{
     background-color: rgb(204, 204, 204);
@@ -105,4 +89,56 @@
 .rec-display-border{
     border: 2px solid var(--retro-border);
     margin: 5px;
+}
+
+.rec-btn-container{
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+}
+
+.rec-btn-diode{
+    width: 40px;
+	height: 6px;
+	background: var(--btn-diode-inactive);
+	border-radius: 4px;
+}
+
+.rec-btn-label {
+    margin: 0;
+}
+
+.rec-btn-active > .rec-btn-diode {
+	background: var(--btn-diode-active);
+    box-shadow: 0px 0px 2px 1px var(--btn-diode-active);
+}
+.rec-btn-active > .rec-btn-label{
+    text-shadow: 0px 0px 2px var(--btn-diode-active);
+}
+
+.rec-btn-active {
+	box-shadow: none !important;
+	transform: scale(0.98) !important;
+    color:  var(--btn-diode-active) !important;
+}
+
+.rec-btn:hover{
+    /* transform: scale(0.95); */
+}
+
+.rec-btn{
+    color: var(--btn-diode-inactive);
+    font-size: .9em;
+    font-weight: 900;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+	background: var(--btn-color-1);
+	border: 2px solid var(--retro-border);
+	border-radius: 3px;
+	box-shadow: 2px 2px var(--retro-shadow-0);
+    flex-direction: column;
+    justify-content: space-between;
+	padding-top: 7px;
+    cursor: pointer;
 }

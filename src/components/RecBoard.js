@@ -5,53 +5,14 @@ import {REC_MODE} from '../actions/actionTypes'
 import styleBender from '../utils'
 import '../css/RecBoard.css'
 
-function objectToControlButtons(object, callback, initClassName){
-
-    return (Object.keys(object).map(key =>    <div 
-        id={key.toUpperCase()+'-R'}
-        className={initClassName}
-        key={key}
-        onClick={() => callback(key)}
-    >      
-        {key.toUpperCase()}
-    </div>)
-    )
-}
 
 const styleClasses = {
-    active: 'rec-btn rec-btn-active',
-    inactive: 'rec-btn'
+    active: 'rec-btn rec-btn-active flex-container',
+    inactive: 'rec-btn flex-container'
 }
 
 
 function RecBoard({records, recMode, changeRecMode, recPlaying}) {
-    let recordLists = Object.keys(records).map(index => 
-        <div className='list-container'>
-            <h4 className="record-list-name">{index.toUpperCase()}</h4>
-            <div className="space-between list-description">
-                <div>
-                    <p>key</p>
-                </div>
-                <div>
-                    <p>time[ms]</p>
-                </div>
-            </div>
-            <ul className='record-list'>
-                {records[index].map((element, i) => 
-                    <li 
-                        id={index+'-'+i}
-                        key={i}
-                        className={i%2?"list-item-2":"list-item-1"}
-                    >
-                        <div className="space-between">
-                            <div>{element.key}</div>
-                            <div>{element.time}</div>
-                        </div>
-                    </li>
-                )}
-        </ul>
-        </div>
-    )
 
 
     useEffect(()=>{
@@ -83,14 +44,53 @@ function RecBoard({records, recMode, changeRecMode, recPlaying}) {
     return(
         <div className='rec-board-container'>
             <div id='rec-board'>
-                {recordLists.map((record, index) => 
-                    <div className="rec-display-border">
-                        <div className="rec-display-shadow" key={index}>{record}</div>
-                    </div>)
+                {
+                    Object.keys(records).map(key => 
+                        <div className="rec-column-container" key={`${key}-list`}>
+                            <div className="rec-display-border" >
+                                <div className="rec-display-shadow" >
+                                    <div className='list-container' >
+                                        <p className="record-list-name" >{key.toUpperCase().replace(/(\d)/, "  $1")}</p>
+                                        <div className="space-between list-description">
+                                            <div>
+                                                <p>key</p>
+                                            </div>
+                                            <div>
+                                                <p>time[ms]</p>
+                                            </div>
+                                        </div>
+                                        <ul className='record-list'>
+                                            {records[key].map((element, i) =>
+                                                <li
+                                                    id={key+'-'+i}
+                                                    key={i}
+                                                    className={i%2?"list-item-2":"list-item-1"}
+                                                >
+                                                    <div className="space-between">
+                                                        <div>{(element.key).toUpperCase()}</div>
+                                                        <div>{element.time}</div>
+                                                    </div>
+                                                </li>
+                                            )}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div className="rec-btn-container flex-container">
+                                <div
+                                    id={key.toUpperCase()+'-R'}
+                                    className=''
+                                    onClick={() => changeRecMode(key)}
+                                >
+                                    <div className="rec-btn-diode"></div>
+                                    <p className="rec-btn-label">{key.toUpperCase()}</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    )
                 }
-            </div>
-            <div className="drum-pads">
-                {objectToControlButtons(records, changeRecMode, 'rec-btn')}
             </div>
         </div>
     )

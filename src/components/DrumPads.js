@@ -132,12 +132,11 @@ function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
     }, [onGoingMode, soundInter, intervals, controlMode])
     
     const pads = Object.keys(audioKeys).map(key => 
-        <div className="pad-container flex-container">
+        <div className="pad-container flex-container" key={key}>
             <div className="pad-border">
                 <div
                     id={key.toLocaleUpperCase()}
                     className={classInactive}
-                    key={key}
                     onClick={() => handleKeypress(key)}
                 >
                     {key}

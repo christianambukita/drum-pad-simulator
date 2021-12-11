@@ -241,12 +241,11 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
         <div>
             <div className="drum-pads">
                 {Object.keys(recData).map(key =>    
-                    <div className="pad-container flex-container">
+                    <div className="pad-container flex-container" key={key}>
                         <div className="pad-border">
                             <div
                                 id={key.toUpperCase()}
                                 className={padClasses.classDisabled}
-                                key={key}
                                 onClick={() => handleKeypress(recData[key].key)}
                             >
                                 {key}
