@@ -10,8 +10,9 @@
     --retro-border:  hsl(0, 0%, 36%);
     --btn-diode-active: hsl(39, 100%, 50%);
     --list-item-active: hsl(39, 75%, 50%);
-    --btn-diode-inactive: hsl(35, 100%, 11%);
+    --btn-diode-inactive: hsl(91, 100%, 37%);
     --btn-color-1: hsl(0, 0%, 50%);
+    --diode-disabled: hsl(0, 0%, 20%);
 }
 
 
@@ -100,7 +101,7 @@
 .rec-btn-diode{
     width: 40px;
 	height: 6px;
-	background: var(--btn-diode-inactive);
+	background: var(--diode-disabled);
 	border-radius: 4px;
 }
 
@@ -127,7 +128,7 @@
 }
 
 .rec-btn{
-    color: var(--btn-diode-inactive);
+    color: var(--diode-disabled);
     font-size: .9em;
     font-weight: 900;
     box-sizing: border-box;

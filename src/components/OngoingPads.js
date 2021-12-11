@@ -46,8 +46,8 @@ function OngoingPads({changeOngoingMode, recMode, onGoingMode}){
 
 
     const styleClasses = {
-        active: 'drum-pad control-pad-active drum-pad-hover',
-        inactive: 'drum-pad control-pad-inactive drum-pad-hover'
+        active: 'control-pad-active',
+        inactive: 'control-pad-inactive'
     }
 
     
@@ -72,12 +72,12 @@ function OngoingPads({changeOngoingMode, recMode, onGoingMode}){
 
     return(
         <div id="control-container">
-            <div className="drum-pads">
+            <div className="drum-pads drum-pad-hover">
                 {objectToControlButtons(audioPads, changeOngoingMode, styleClasses.inactive)}
             </div>
             <div>
                 <div></div>
-                <div className="drum-pads">
+                <div className="drum-pads drum-pad-hover">
                     {objectToControlButtons(recPads, changeOngoingMode, styleClasses.inactive)}
                 </div>
             </div>

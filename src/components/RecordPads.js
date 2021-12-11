@@ -4,7 +4,6 @@ import {connect} from 'react-redux'
 import setRecordActionCreator from '../actions/setRecordActionCreator'
 import {RECORD, INTERVAL, REC_PLAING_ADD, REC_PLAING_REM} from '../actions/actionTypes'
 import recPlaingAction from '../actions/recPlaingAction'
-import styleBender from '../utils'
 import "../css/DrumPads.css"
 
 function play(key){
@@ -66,20 +65,16 @@ function setRecRecord(state, setState, activeRecKey, key){
 ////////////////////////////////////////////////////////////////////////////////////
 function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRecPlaing, onGoing, intervals}){
     const classActive = [
-        'drum-pad',
-        'pad-active',
-        'rec-pad'
+        'pad-active'
     ].join(' ');
 
     const classInactive = [
-        'drum-pad',
         'pad-inactive'
     ].join(' ');
 
     const classDisabled = [
-        'drum-pad',
-        'disabled-btn'
-    ].join(' ');
+        'pad-disabled'
+    ].join('');
 
     const padClasses = {
         active: classActive,
@@ -130,17 +125,33 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
     // STYLE BENDER
 
     useEffect(()=>{
-        styleBender(
-            Object.keys(recMode),
-            [padClasses.inactive, padClasses.disabled],
-            (key) => !recKeyStatus.activeRecKey && records[key][0],
-            (key) => key.toUpperCase());
+        const styles = [padClasses.inactive, padClasses.disabled]
+        const changeConditionFunction = (key) => records[key][0]
+        const toIdConverter = (key) => key.toUpperCase()
+        Object.keys(recMode).forEach(key => {
+            let docElem = document.getElementById(toIdConverter(key))
+            console.log(styles)
+            console.log(key," status: ",changeConditionFunction(key))
+            if (docElem) {
+                if (changeConditionFunction(key)){
+                    console.log("aktywne")
+                    docElem.classList.add(styles[0])
+                    docElem.classList.remove(styles[1])
+                }else{
+                    console.log("nie aktywne")
+                    docElem.classList.remove(styles[0])
+                    docElem.classList.add(styles[1])
+                }
+            }
+        })
+
+
     }, [recKeyStatus, records])
 
     function recPlayCallback(i, arr, key, pad){
         setRecPlaing(REC_PLAING_REM, key, i);
         if(i+1===arr.length) {
-            pad.classList=padClasses.inactive
+            pad.classList.remove("pad-playing")
         }
     }
 
@@ -150,12 +161,18 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
     function multiPlay(key, pad, isOngoing = false){
         console.log("start")
         console.table({recData, key})
+        
+        pad.classList.add("pad-active")
+        setTimeout(() => pad.classList.remove("pad-active"), 150)
         recData[key].record.forEach((rec, i, arr) => {
-            if(!isOngoing) pad.classList = padClasses.active
+            if(!isOngoing) pad.classList.add("pad-playing")
             let time = rec.time;
             
+            
             setTimeout(() => {
+                console.log("playing: ", rec)
                 play(rec.key).then(()=>{
+                    
                     isOngoing? 
                     setRecPlaing(REC_PLAING_ADD, key, i)                            
                     :
@@ -242,13 +259,13 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
             <div className="drum-pads">
                 {Object.keys(recData).map(key =>    
                     <div className="pad-container flex-container" key={key}>
-                        <div className="pad-border">
+                        <div className="pad-border" id={key.toLocaleUpperCase()}>
                             <div
-                                id={key.toUpperCase()}
-                                className={padClasses.classDisabled}
-                                onClick={() => handleKeypress(recData[key].key)}
+                                className="drum-pad flex-container"
+                                onClick={() => handleKeypress(key)}
                             >
-                                {key}
+                                {key.toUpperCase()}
+                                <div className="pad-diode"></div>  
                             </div>
                         </div>
                     </div>

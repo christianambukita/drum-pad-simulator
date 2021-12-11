@@ -182,7 +182,3 @@ input[type=number]:focus{
 
 
 
-.disabled-btn{
-  background-color: rgb(66,66,66);
-  cursor:auto;
-}

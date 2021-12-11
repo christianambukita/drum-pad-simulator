@@ -42,6 +42,7 @@
 
 .pad-diode{
   background: var(--btn-diode-inactive);
+  box-shadow: 0 0 4px 1px var(--btn-diode-inactive);
   width: 7px;
   height: 7px;
   border-radius: 50%;
@@ -53,7 +54,18 @@
   box-shadow: 0 0 4px 1px var(--btn-diode-active);
 }
 
+.pad-disabled .pad-diode{
+  background: var(--diode-disabled);
+  box-shadow: none;
+}
+
+
 .pad-inactive{
   transition: 0.1s;
   position:relative;
+}
+
+
+.pad-disabled{
+  cursor:auto;
 }
