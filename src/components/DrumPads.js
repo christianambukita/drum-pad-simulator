@@ -19,14 +19,10 @@ function play(key){
 
 function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
     const classActive = [
-        'drum-pad',
         'pad-active'
     ].join(' ');
 
-    const classInactive = [
-        'drum-pad',
-        'pad-inactive'
-    ].join(' ');
+
 
     //used to check weather to visualy disactivate pad
     let soundsId = {
@@ -55,8 +51,10 @@ function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
 
     function singleAudioPlay(key){
         let pad = document.getElementById(key.toLocaleUpperCase());
-        pad.classList = classActive
+        pad.classList.add("pad-active")
+        pad.classList.add("pad-playing")
 
+        setTimeout(() => pad.classList.remove("pad-active"), 150)
         setDisplay(key);
 
         let soundId = nanoid();
@@ -64,7 +62,7 @@ function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
         play(key)
             .then( () => {
                 if(soundsId[key].id === soundId)
-                    pad.classList = classInactive;
+                    pad.classList.remove("pad-playing");
             })
     }
 
@@ -133,13 +131,13 @@ function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
     
     const pads = Object.keys(audioKeys).map(key => 
         <div className="pad-container flex-container" key={key}>
-            <div className="pad-border">
+            <div className="pad-border" id={key.toLocaleUpperCase()}>
                 <div
-                    id={key.toLocaleUpperCase()}
-                    className={classInactive}
+                    className="drum-pad flex-container"
                     onClick={() => handleKeypress(key)}
                 >
-                    {key}
+                    {key.toUpperCase()}
+                    <div className="pad-diode"></div>  
                 </div>
             </div>
         </div>
