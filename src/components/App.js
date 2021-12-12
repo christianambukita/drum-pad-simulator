@@ -3,8 +3,10 @@ import {connect} from 'react-redux'
 import '../App.css';
 import DrumPads from './DrumPads'
 import RecordPads from './RecordPads'
-import ControlPads from './ControlPads'
 import ModeControl from './ModeControl';
+import IntervalControl from './IntervalControl'
+import OngoingPads from './OngoingPads'
+import RecBoard from './RecBoard'
 
 function App() {
 
@@ -15,18 +17,21 @@ function App() {
     <div className="app-container">
       <div className="main-container">
         <div className="top-section">
-          <div className="flex-container">
-            <ModeControl />
-          </div>
         </div>
         <div className="bottom-section">
+          <div className="section-container">
+            <RecBoard />
+          </div>
           <div className="section-container">
             {/* <div id="display">{displayValue}</div> */}
             <DrumPads setDisplay={setDisplay}/>
             <RecordPads />
           </div>
           <div className="section-container">
-            <ControlPads />
+            <IntervalControl />
+          </div>
+          <div className="section-container">
+            <OngoingPads />
           </div>
         </div>
         
