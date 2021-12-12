@@ -1,0 +1,21 @@
+.interval-container{
+    width: 150px;
+  }
+  
+  .rec-pad{
+    background-color: rgb(244, 220, 0) !important;
+  }
+  
+  .rec-pad-inactive{
+    background-color: rgb(17, 80, 40) !important;
+  }
+  
+  .control-pad-inactive{
+    background-color: rgb(33,33,33) !important;
+    border: 1px solid rgb(100,100,100) !important;
+  }
+  
+  .control-pad-active{
+    background-color: rgb(33,33,33) !important;
+    border: 1px solid rgb(244, 220, 0) !important;
+  }

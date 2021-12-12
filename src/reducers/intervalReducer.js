@@ -1,4 +1,4 @@
-import {INTER_CONTROL} from '../actions/actionTypes'
+import {INTER_INCREMENT, INTER_DECREMENT} from '../actions/actionTypes'
 
 const initialState = {
     q: 500,
@@ -17,8 +17,15 @@ const initialState = {
 
 function intervalReducer(state = initialState, action){
     switch(action.type){
-        case INTER_CONTROL:
-            return {...state, [action.payload.key]: action.payload.inter}
+        case INTER_INCREMENT:
+            const incKey = action.payload.key;
+            const incInterState = state[incKey];
+            if(incInterState < 1500 ) return {...state, [incKey]: incInterState + 50};
+            break;
+        case INTER_DECREMENT:
+            const decKey = action.payload.key;
+            const decInterState = state[decKey];
+            if(decInterState > 0 ) return {...state, [decKey]: decInterState - 50};
         default:
             return state
     }
