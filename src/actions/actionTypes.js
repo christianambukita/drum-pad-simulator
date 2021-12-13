@@ -1,5 +1,6 @@
 export const REC_MODE = 'REC_MODE'
 export const ONGOING_MODE = 'ONGOING_MODE'
+export const ONGOING_MODE_RESET = 'ONGOING_MODE_RESET'
 export const PLAY = 'PLAY'
 export const RECORD = 'RECORD'
 export const INTERVAL = 'INTERVAL'

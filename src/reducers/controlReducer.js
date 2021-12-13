@@ -1,4 +1,4 @@
-import {ONGOING_MODE, REC_MODE, INTERVAL, PLAY} from '../actions/actionTypes'
+import {ONGOING_MODE, ONGOING_MODE_RESET, REC_MODE, INTERVAL, PLAY} from '../actions/actionTypes'
 
 
 const  onGoingMode = {
@@ -23,18 +23,20 @@ const recMode = {
 }
 
 
-const modeReducerCreator = (type, initState) => (state = initState, action) =>{
+export const onGoingModeReducer = (state = onGoingMode, action) =>{
     switch(action.type){
-        case(type):
+        case ONGOING_MODE:
             let key = action.payload.key;
             console.log(key);
             return ({...state, [key]: !state[key]})
+        case ONGOING_MODE_RESET:
+            return ({...state, ...onGoingMode})
         default:
             return state
     }
 }
 
-const recModeReducerr = (state = recMode, action) =>{
+export const recModeReducer = (state = recMode, action) =>{
     switch(action.type){
         case REC_MODE:
             let key = action.payload.key;
@@ -47,8 +49,3 @@ const recModeReducerr = (state = recMode, action) =>{
             return state
     }
 }
-
-
-
-export const onGoingModeReducer = modeReducerCreator(ONGOING_MODE, onGoingMode);
-export const recModeReducer = recModeReducerr

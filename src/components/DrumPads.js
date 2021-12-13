@@ -67,6 +67,12 @@ function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
     }
 
     function onPlay (interval, key){
+        let pad = document.getElementById(key.toLocaleUpperCase());
+        pad.classList.add("pad-active")
+        pad.classList.add("pad-playing")
+
+        setTimeout(() => pad.classList.remove("pad-active"), 150)
+
         let interId = setInterval(() => play(key), interval);
         let newState = {
             ...soundInter,
@@ -83,7 +89,13 @@ function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
     }
 
 
-    function clearOngoing(key){
+    function clearOngoing(key, keyAnimation = false){
+        let pad = document.getElementById(key.toLocaleUpperCase());
+        pad.classList.remove("pad-playing");
+
+        if (keyAnimation){pad.classList.add("pad-active");
+        setTimeout(() => pad.classList.remove("pad-active"), 150)}
+
         clearInterval(soundInter[key])
         if(soundInter[key]){
             let newState = {
@@ -106,7 +118,7 @@ function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
                 !soundInter[key]?
                 ongoingAudioPlay(key, intervals)
                 :
-                clearOngoing(key)
+                clearOngoing(key, true)
             }
 
         }

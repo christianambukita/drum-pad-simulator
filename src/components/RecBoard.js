@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
 import {useEffect} from 'react'
 import modeActionCreator from '../actions/controlActionCreator'
-import {REC_MODE} from '../actions/actionTypes'
+import {REC_MODE, ONGOING_MODE_RESET} from '../actions/actionTypes'
 import styleBender from '../utils'
 import '../css/RecBoard.css'
 import '../css/v-display.css'
@@ -13,7 +13,7 @@ const styleClasses = {
 }
 
 
-function RecBoard({records, recMode, changeRecMode, recPlaying}) {
+function RecBoard({records, recMode, changeRecMode, recPlaying, resetOngoing}) {
 
 
     useEffect(()=>{
@@ -81,7 +81,7 @@ function RecBoard({records, recMode, changeRecMode, recPlaying}) {
                                 <div
                                     id={key.toUpperCase()+'-R'}
                                     className=''
-                                    onClick={() => changeRecMode(key)}
+                                    onClick={() => {changeRecMode(key); resetOngoing();}}
                                 >
                                     <div className="rec-btn-diode"></div>
                                     <p className="rec-btn-label">{key.toUpperCase()}</p>
@@ -105,7 +105,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     changeRecMode: (key) => {
         dispatch(modeActionCreator(key, REC_MODE))
-      }
+    },
+    resetOngoing: () => {
+        dispatch(modeActionCreator(undefined, ONGOING_MODE_RESET))
+    }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecBoard)
