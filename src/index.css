@@ -1,3 +1,19 @@
+:root{
+  --retro-main: rgb(204, 204, 204);
+  --retro-shadow-0: hsl(0, 0%, 43%);
+  --retro-shadow-1: hsl(0, 0%, 50%);
+  --retro-shadow-2: hsl(0, 0%, 75%);
+  --retro-shadow-3: hsl(0, 0%, 83%);
+  --retro-display:  hsl(0, 0%, 14%);
+  --retro-border:  hsl(0, 0%, 36%);
+  --diode-active: hsl(39, 100%, 75%);
+  --diode-active-shadow: hsl(30, 100%, 50%);
+  --list-item-active: hsl(39, 75%, 50%);
+  --diode-inactive: hsl(91, 100%, 37%);
+  --btn-color-1: hsl(0, 0%, 50%);
+  --diode-disabled: hsl(0, 0%, 20%);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

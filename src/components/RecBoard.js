@@ -4,6 +4,7 @@ import modeActionCreator from '../actions/controlActionCreator'
 import {REC_MODE} from '../actions/actionTypes'
 import styleBender from '../utils'
 import '../css/RecBoard.css'
+import '../css/v-display.css'
 
 
 const styleClasses = {
@@ -47,34 +48,33 @@ function RecBoard({records, recMode, changeRecMode, recPlaying}) {
                 {
                     Object.keys(records).map(key => 
                         <div className="rec-column-container" key={`${key}-list`}>
-                            <div className="rec-display-border" >
-                                <div className="rec-display-shadow" >
-                                    <div className='list-container' >
-                                        <p className="record-list-name" >{key.toUpperCase().replace(/(\d)/, "  $1")}</p>
-                                        <div className="space-between list-description">
-                                            <div>
-                                                <p>key</p>
-                                            </div>
-                                            <div>
-                                                <p>time[ms]</p>
-                                            </div>
+                            <div className="v-display-border" >
+                                <div className='list-container v-display-shadow' >
+                                    <p className="record-list-name" >{key.toUpperCase().replace(/(\d)/, "  $1")}</p>
+                                    <div className="space-between list-description">
+                                        <div>
+                                            <p>key</p>
                                         </div>
-                                        <ul className='record-list'>
-                                            {records[key].map((element, i) =>
-                                                <li
-                                                    id={key+'-'+i}
-                                                    key={i}
-                                                    className={i%2?"list-item-2":"list-item-1"}
-                                                >
-                                                    <div className="space-between">
-                                                        <div>{(element.key).toUpperCase()}</div>
-                                                        <div>{element.time}</div>
-                                                    </div>
-                                                </li>
-                                            )}
-                                        </ul>
+                                        <div>
+                                            <p>time[ms]</p>
+                                        </div>
                                     </div>
+                                    <ul className='record-list'>
+                                        {records[key].map((element, i) =>
+                                            <li
+                                                id={key+'-'+i}
+                                                key={i}
+                                                className={i%2?"list-item-2":"list-item-1"}
+                                            >
+                                                <div className="space-between">
+                                                    <div>{(element.key).toUpperCase()}</div>
+                                                    <div>{element.time}</div>
+                                                </div>
+                                            </li>
+                                        )}
+                                    </ul>
                                 </div>
+                                
                             </div>
                             
                             <div className="rec-btn-container flex-container">

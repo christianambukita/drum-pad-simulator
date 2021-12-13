@@ -130,15 +130,11 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
         const toIdConverter = (key) => key.toUpperCase()
         Object.keys(recMode).forEach(key => {
             let docElem = document.getElementById(toIdConverter(key))
-            console.log(styles)
-            console.log(key," status: ",changeConditionFunction(key))
             if (docElem) {
                 if (changeConditionFunction(key)){
-                    console.log("aktywne")
                     docElem.classList.add(styles[0])
                     docElem.classList.remove(styles[1])
                 }else{
-                    console.log("nie aktywne")
                     docElem.classList.remove(styles[0])
                     docElem.classList.add(styles[1])
                 }
@@ -159,8 +155,7 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
 
 
     function multiPlay(key, pad, isOngoing = false){
-        console.log("start")
-        console.table({recData, key})
+        
         
         pad.classList.add("pad-active")
         setTimeout(() => pad.classList.remove("pad-active"), 150)
@@ -170,7 +165,7 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
             
             
             setTimeout(() => {
-                console.log(`${key}-${i}`)
+                
                 document.getElementById(`${key}-${i}`).scrollIntoView(false)
                 play(rec.key).then(()=>{
                     

@@ -41,8 +41,8 @@
 }
 
 .pad-diode{
-  background: var(--btn-diode-inactive);
-  box-shadow: 0 0 4px 1px var(--btn-diode-inactive);
+  background: var(--diode-inactive);
+  box-shadow: 0 0 4px 1px var(--diode-inactive);
   width: 7px;
   height: 7px;
   border-radius: 50%;
@@ -50,8 +50,8 @@
 }
 
 .pad-playing .pad-diode{
-  background: var(--btn-diode-active);
-  box-shadow: 0 0 4px 1px var(--btn-diode-active);
+  background: var(--diode-active);
+  box-shadow: 0 0 4px 1px var(--diode-active);
 }
 
 .pad-disabled .pad-diode{

@@ -18,14 +18,15 @@ function App() {
         </div>
         <div className="bottom-section">
           <div className="section-container">
-            <RecBoard />
+            <LoopIntervals />
           </div>
           <div className="section-container">
             <DrumPads setDisplay={setDisplay}/>
             <RecordPads />
           </div>
+          
           <div className="section-container">
-            <LoopIntervals />
+            <RecBoard />
           </div>
         </div>
         
