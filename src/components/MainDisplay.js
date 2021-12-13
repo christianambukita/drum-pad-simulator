@@ -1,8 +1,7 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import "../css/MainDisplay.css"
 import "../css/v-display.css"
 import { connect } from 'react-redux'
-import { useEffect } from "react/cjs/react.development"
 
 const mapStateToProps = (state) => ({
     recMode: state.recMode,
