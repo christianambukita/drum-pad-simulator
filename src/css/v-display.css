@@ -9,4 +9,5 @@
 .v-display-border{
     border: 2px solid var(--retro-border);
     margin: 5px;
+	border-radius: 2px;
 }

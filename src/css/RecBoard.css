@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 
 
 
@@ -63,7 +63,7 @@
 
 
 .rec-board-container{
-    background-color: rgb(204, 204, 204);
+    padding-right: 30px;
 }
 
 .rec-btn-container{

@@ -5,6 +5,7 @@ import DrumPads from './DrumPads'
 import RecordPads from './RecordPads'
 import RecBoard from './RecBoard'
 import LoopIntervals from './LoopIntervals';
+import MainDisplay from './MainDisplay';
 
 function App() {
 
@@ -13,23 +14,28 @@ function App() {
 
   return (
     <div className="app-container">
-      <div className="main-container">
-        <div className="top-section">
-        </div>
-        <div className="bottom-section">
-          <div className="section-container">
-            <LoopIntervals />
-          </div>
-          <div className="section-container">
-            <DrumPads setDisplay={setDisplay}/>
-            <RecordPads />
-          </div>
+      <div className="outer-border flex-container">
+        <div className="inner-border flex-container">
+          <div className="main-container">
+            <div className="top-section">
+              <MainDisplay />
+            </div>
+            <div className="bottom-section">
+              <div className="section-container">
+                <LoopIntervals />
+              </div>
+              <div className="section-container">
+                <DrumPads setDisplay={setDisplay}/>
+                <RecordPads />
+              </div>
           
-          <div className="section-container">
-            <RecBoard />
+              <div className="section-container">
+                <RecBoard />
+              </div>
+            </div>
+          
           </div>
         </div>
-        
       </div>
     </div>
   );

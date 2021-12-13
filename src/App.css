@@ -2,6 +2,8 @@
 
 *{
   box-sizing: border-box;
+  --main-border-radius: 50px;
+  --main-border-width: 30px;
 }
 
 body{
@@ -20,6 +22,7 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 10px;
 }
 
 .main-container{
@@ -27,6 +30,27 @@ body{
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  border-radius: var(--main-border-radius);
+  overflow: hidden;
+  border: 1px solid var(--retro-border)
+}
+
+.outer-border{
+  padding: calc(var(--main-border-width) /2);
+  border-radius: calc(var(--main-border-radius) + var(--main-border-width));
+  background: var(--retro-main);
+  border: 2px outset var(--retro-border)
+}
+
+.inner-border{
+  padding: calc(var(--main-border-width) /2);
+  border-radius: calc(var(--main-border-radius) + var(--main-border-width) / 2);
+    background: linear-gradient( 
+    -45deg,
+		var(--retro-shadow-2) 0%,
+		var(--retro-shadow-0) 100%
+  );
+  border: 2px solid var(--retro-border);
 }
 
 .top-section{
@@ -34,9 +58,6 @@ body{
   justify-content: flex-end;
   align-items: center;
   width: 100%;
-}
-.top-section >div{
-  width: 50%;
 }
 
 .bottom-section{
@@ -65,7 +86,7 @@ body{
 .section-container{
   background-color: var(--retro-main);
   padding: 10px;
-  height: 500px;
+  height: 450px;
 }
 
 
