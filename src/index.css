@@ -9,7 +9,8 @@
   --diode-active: hsl(39, 100%, 75%);
   --diode-active-shadow: hsl(30, 100%, 50%);
   --list-item-active: hsl(39, 75%, 50%);
-  --diode-inactive: hsl(91, 100%, 37%);
+  --diode-inactive: hsl(91, 100%, 77%);
+  --diode-inactive-shadow: hsl(91, 100%, 40%);
   --btn-color-1: hsl(0, 0%, 50%);
   --diode-disabled: hsl(0, 0%, 20%);
 }

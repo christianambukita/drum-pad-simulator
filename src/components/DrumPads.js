@@ -137,7 +137,6 @@ function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
                     onClick={() => handleKeypress(key)}
                 >
                     {key.toUpperCase()}
-                    <div className="pad-diode"></div>  
                 </div>
             </div>
         </div>
