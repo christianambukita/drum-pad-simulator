@@ -9,8 +9,8 @@ const mapStateToProps = (state) => ({
 
 const DISPLAY_MSGS = {
     rec: (key)=> ({
-        header: "MODE: RECCORD",
-        message: `Use keys to reccord melody. Press ${key.toUpperCase()} to stop reccording.`,
+        header: "MODE: RECORD",
+        message: `Use keys to record melody. Press ${key.toUpperCase()} to stop recording.`,
     }),
     play: {
         header: "MODE: PLAY",
