@@ -41,7 +41,7 @@ function RecBoard({records, recMode, changeRecMode, recPlaying, resetOngoing}) {
             (key) => key.toUpperCase()+'-R');
     }, [recMode])
 
-
+    console.table(records);
     return(
         <div className='rec-board-container'>
             <div id='rec-board'>

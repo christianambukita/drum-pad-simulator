@@ -28,19 +28,6 @@ function recDataInit(state){
     return newState;
 }
 
-function objectToButtons(object, callback, initClassName){
-
-    return (Object.keys(object).map(key =>    <div 
-        id={object[key].name.toUpperCase()}
-        className={initClassName}
-        key={object[key].name}
-        onClick={() => callback(key)}
-    >      
-        {object[key].name}
-    </div>)
-    );
-}
-
 function resetRecData(state, setState, key) {
 
     let newState = {...state};
@@ -102,7 +89,7 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
     })
 
     useEffect(() =>{
-        let activeRecKey = Object.keys(recData).filter(key => recMode[key])[0];
+        let activeRecKey = Object.keys(recMode).filter(key => recMode[key])[0];
         setRecKey({activeRecKey, oldRecKey: recKeyStatus.activeRecKey})
     }, [recMode])
 
@@ -159,7 +146,7 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
         
         pad.classList.add("pad-active")
         setTimeout(() => pad.classList.remove("pad-active"), 150)
-        recData[key].record.forEach((rec, i, arr) => {
+        records[key].forEach((rec, i, arr) => {
             if(!isOngoing) pad.classList.add("pad-playing")
             let time = rec.time;
             
@@ -220,24 +207,24 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
 
 
     function handleKeypress({key}){
- 
-        if(controlMode === INTERVAL) return
 
         let activeRecKey = recKeyStatus.activeRecKey;
 
-        if(activeRecKey && Object.keys(audioKeys).includes(key)){
-            if(activeRecKey !== recKeyStatus.oldRecKey){
-                resetRecData(recData, setRecData, activeRecKey);
-                recData[activeRecKey].recStart = Date.now();
-            }
-            setRecKey({activeRecKey, oldRecKey: recKeyStatus.activeRecKey})
-            setRecRecord(recData, setRecData, activeRecKey, key);
-        }
+        // if(activeRecKey && Object.keys(audioKeys).includes(key)){
+        //     if(activeRecKey !== recKeyStatus.oldRecKey){
+        //         resetRecData(recData, setRecData, activeRecKey);
+        //         recData[activeRecKey].recStart = Date.now();
+        //     }
+        //     setRecKey({activeRecKey, oldRecKey: recKeyStatus.activeRecKey})
+        //     setRecRecord(recData, setRecData, activeRecKey, key);
+        // }
 
-        if(!activeRecKey && Object.keys(recData).map(rec => recData[rec].key).includes(key)){
-            console.log(Object.keys(recData).filter(rec => recData[rec].key === key))
+        const recEnabled = records[`rec${key}`] ? records[`rec${key}`].length !== 0 : false
+        console.log(key)
+        if(!activeRecKey && recEnabled){
             let recDataKey = `rec${key}`
             let pad = document.getElementById(recDataKey.toUpperCase());
+
             if(controlMode !== RECORD && onGoing[recDataKey]){
                 soundInter[recDataKey] ?
                 clearOngoing(recDataKey)
@@ -248,7 +235,23 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
             }
         }
 
+        // if(!activeRecKey && Object.keys(recData).map(rec => recData[rec].key).includes(key)){
+        //     console.log(Object.keys(recData).filter(rec => recData[rec].key === key))
+        //     let recDataKey = `rec${key}`
+        //     let pad = document.getElementById(recDataKey.toUpperCase());
+        //     if(controlMode !== RECORD && onGoing[recDataKey]){
+        //         soundInter[recDataKey] ?
+        //         clearOngoing(recDataKey)
+        //         :
+        //         ongoingAudioPlay(recDataKey, intervals)
+        //     }else{
+        //         multiPlay(recDataKey, pad)
+        //     }
+        // }
+
     }
+
+    const getKey = (key) => key.replace(/rec(\d)/, '$1')
 
     return(
         <div>
@@ -258,7 +261,7 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
                         <div className="pad-border" id={key.toLocaleUpperCase()}>
                             <div
                                 className="drum-pad flex-container"
-                                onClick={() => handleKeypress(key)}
+                                onClick={() => handleKeypress({key: getKey(key)})}
                             >
                                 {key.toUpperCase()}
                                 <div className="pad-diode"></div>  

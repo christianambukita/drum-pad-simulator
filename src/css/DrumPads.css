@@ -33,7 +33,7 @@
 }
 
 .pad-active{
-  transform: scale(.95);
+  transform: scale(.95) !important;
 }
 
 

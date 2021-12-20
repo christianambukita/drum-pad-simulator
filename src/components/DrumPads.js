@@ -4,6 +4,8 @@ import { nanoid } from 'nanoid'
 import {connect} from 'react-redux'
 import {RECORD} from '../actions/actionTypes'
 import "../css/DrumPads.css"
+import setRecordActionCreator from '../actions/setRecordActionCreator'
+
 
 function play(key){
     return new Promise(function(resolve, reject) {
@@ -17,11 +19,7 @@ function play(key){
 
 
 
-function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
-    const classActive = [
-        'pad-active'
-    ].join(' ');
-
+function DrumPads({setDisplay, onGoingMode, intervals, controlMode, recMode, setRecord, records}) {
 
 
     //used to check weather to visualy disactivate pad
@@ -38,18 +36,37 @@ function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
     }
 
     let [soundInter, setSoundInter] = useState({
-    q: null,
-    w: null,
-    e: null,
-    a: null,
-    s: null,
-    d: null,
-    z: null,
-    x: null,
-    c: null
+        q: null,
+        w: null,
+        e: null,
+        a: null,
+        s: null,
+        d: null,
+        z: null,
+        x: null,
+        c: null
     })
 
+    const [recStart, setRecStart] = useState({
+        rec1: undefined,
+        rec2: undefined,
+        rec3: undefined,
+    })
+
+    const [recKeyStatus, setRecKey] = useState({
+        activeRecKey: undefined,
+        oldRecKey: undefined
+    })
+
+    useEffect(() =>{
+        let activeRecKey = Object.keys(recMode).filter(key => recMode[key])[0];
+        setRecKey({activeRecKey, oldRecKey: recKeyStatus.activeRecKey})
+        
+    }, [recMode])
+
+    console.log(recKeyStatus)
     function singleAudioPlay(key){
+        console.log(key)
         let pad = document.getElementById(key.toLocaleUpperCase());
         pad.classList.add("pad-active")
         pad.classList.add("pad-playing")
@@ -67,6 +84,7 @@ function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
     }
 
     function onPlay (interval, key){
+        console.log(key)
         let pad = document.getElementById(key.toLocaleUpperCase());
         pad.classList.add("pad-active")
         pad.classList.add("pad-playing")
@@ -106,8 +124,40 @@ function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
         }
     }
 
-    //Czy to tworzy elementy audio w nieskończoność?
+    function handleSetRecord(recKey, key, reset){
+
+        let newState = [...records[recKey]];
+        let time = Date.now() - recStart[recKey];
+        if(reset) newState = [];
+        if(!newState.length || reset) time = 0;
+
+        newState.push({
+            key,
+            time
+        })
+    
+
+        console.table(newState)
+        setRecord(recKey, newState);
+    }
+
     function handleKeypress(key){
+
+        let activeRecKey = recKeyStatus.activeRecKey;
+
+        console.log(activeRecKey, key)
+        if(activeRecKey && Object.keys(audioKeys).includes(key)){
+            let reset = false;
+            if(activeRecKey !== recKeyStatus.oldRecKey){
+                reset = true;
+                setRecStart({...recStart, [activeRecKey]: Date.now()})
+            }
+            setRecKey({activeRecKey, oldRecKey: recKeyStatus.activeRecKey})
+            handleSetRecord(activeRecKey, key, reset);
+        }
+
+
+
         if(Object.keys(audioKeys).includes(key)){
             if(controlMode === RECORD){
                 singleAudioPlay(key)
@@ -139,18 +189,22 @@ function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
         return function cleanup() {
             document.removeEventListener("keypress", handleKeyPressCallback, false);
         }
-    }, [onGoingMode, soundInter, intervals, controlMode])
+    }, [onGoingMode, soundInter, intervals, controlMode, records, recKeyStatus])
     
     const pads = Object.keys(audioKeys).map(key => 
         <div className="pad-container flex-container" key={key}>
-            <div className="pad-border" id={key.toLocaleUpperCase()}>
+            <button 
+                className="pad-border"
+                id={key.toLocaleUpperCase()}
+                onClick={() => handleKeypress(key)}
+            >
                 <div
                     className="drum-pad flex-container"
-                    onClick={() => handleKeypress(key)}
+                    
                 >
                     {key.toUpperCase()}
                 </div>
-            </div>
+            </button>
         </div>
     );
 
@@ -162,9 +216,15 @@ function DrumPads({setDisplay, onGoingMode, intervals, controlMode}) {
 }
 
 const mapStateToProps = state => ({
+    records: state.records,
+    recMode: state.recMode,
     onGoingMode: state.onGoing,
     intervals: state.intervals,
     controlMode: state.controlMode
 })
 
-export default connect( mapStateToProps ,null)(DrumPads);
+const mapDispatchToProps = dispatch => ({
+    setRecord: (index, record) => dispatch(setRecordActionCreator(index, record)),
+})  
+
+export default connect( mapStateToProps ,mapDispatchToProps)(DrumPads);
