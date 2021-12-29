@@ -210,15 +210,6 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
 
         let activeRecKey = recKeyStatus.activeRecKey;
 
-        // if(activeRecKey && Object.keys(audioKeys).includes(key)){
-        //     if(activeRecKey !== recKeyStatus.oldRecKey){
-        //         resetRecData(recData, setRecData, activeRecKey);
-        //         recData[activeRecKey].recStart = Date.now();
-        //     }
-        //     setRecKey({activeRecKey, oldRecKey: recKeyStatus.activeRecKey})
-        //     setRecRecord(recData, setRecData, activeRecKey, key);
-        // }
-
         const recEnabled = records[`rec${key}`] ? records[`rec${key}`].length !== 0 : false
         console.log(key)
         if(!activeRecKey && recEnabled){
@@ -235,20 +226,6 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
             }
         }
 
-        // if(!activeRecKey && Object.keys(recData).map(rec => recData[rec].key).includes(key)){
-        //     console.log(Object.keys(recData).filter(rec => recData[rec].key === key))
-        //     let recDataKey = `rec${key}`
-        //     let pad = document.getElementById(recDataKey.toUpperCase());
-        //     if(controlMode !== RECORD && onGoing[recDataKey]){
-        //         soundInter[recDataKey] ?
-        //         clearOngoing(recDataKey)
-        //         :
-        //         ongoingAudioPlay(recDataKey, intervals)
-        //     }else{
-        //         multiPlay(recDataKey, pad)
-        //     }
-        // }
-
     }
 
     const getKey = (key) => key.replace(/rec(\d)/, '$1')
@@ -263,7 +240,7 @@ function RecordPads({recMode, setRecord, controlMode, records, recPlaing, setRec
                                 className="drum-pad flex-container"
                                 onClick={() => handleKeypress({key: getKey(key)})}
                             >
-                                {key.toUpperCase()}
+                                {key.replace(/rec(\d)/, "R$1")}
                                 <div className="pad-diode"></div>  
                             </div>
                         </div>
