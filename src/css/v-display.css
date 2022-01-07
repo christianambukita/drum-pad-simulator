@@ -1,13 +1,12 @@
-.v-display-shadow{  
-
+.v-display-shadow {
 	border-top: 15px solid var(--retro-shadow-0);
 	border-left: 15px solid var(--retro-shadow-1);
 	border-right: 15px solid var(--retro-shadow-2);
 	border-bottom: 15px solid var(--retro-shadow-3);
 }
 
-.v-display-border{
-    border: 2px solid var(--retro-border);
-    margin: 5px;
+.v-display-border {
+	border: 2px solid var(--retro-border);
+	margin: 5px;
 	border-radius: 2px;
 }

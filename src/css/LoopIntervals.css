@@ -1,25 +1,25 @@
-.interval-container{
-    padding: 0 20px 0 20px;
+.interval-container {
+	padding: 0 20px 0 20px;
 }
 
-.inter-display{
-  font-family: "VT323", monospace;
-  box-sizing: content-box;
-  background: var(--retro-display);
-  width: 4ch;
-  padding: 4px 8px;
-  font-size: 22px;
-  align-items: flex-start;
+.inter-display {
+	font-family: 'VT323', monospace;
+	box-sizing: content-box;
+	background: var(--retro-display);
+	width: 4ch;
+	padding: 4px 8px;
+	font-size: 22px;
+	align-items: flex-start;
 }
 
-.display-margin{
-  margin-inline: 15px;
+.display-margin {
+	margin-inline: 15px;
 }
 
 .btn-container,
 .inter-display,
-.ctrl-section-container{
-  flex-direction: column;
+.ctrl-section-container {
+	flex-direction: column;
 }
 
 .display-elem,
@@ -35,16 +35,16 @@
 .ctrl-btn {
 	width: 25px;
 	height: 100%;
-  border-radius: 4px;
-  background: var(--retro-main);
+	border-radius: 4px;
+	background: var(--retro-main);
 }
 .ctrl-btn:nth-child(1) {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
 }
 .ctrl-btn:nth-child(2) {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
 }
 .inter-button {
 	-webkit-appearance: none;

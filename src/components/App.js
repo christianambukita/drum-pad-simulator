@@ -1,44 +1,44 @@
-import {useState} from 'react'
-import {connect} from 'react-redux'
+import { useState } from 'react';
+import { connect } from 'react-redux';
 import '../App.css';
-import DrumPads from './DrumPads'
-import RecordPads from './RecordPads'
-import RecBoard from './RecBoard'
+import DrumPads from './DrumPads';
+import RecordPads from './RecordPads';
+import RecBoard from './RecBoard';
 import LoopIntervals from './LoopIntervals';
 import MainDisplay from './MainDisplay';
 
 function App() {
+	const [displayValue, setDisplay] = useState('Press any key');
 
-  
-  const [displayValue, setDisplay] = useState('Press any key');
+	return (
+		<div className='app-container'>
+			<div className='outer-border flex-container'>
+				<div className='inner-border flex-container'>
+					<div className='main-container'>
+						<div className='top-section'>
+							<MainDisplay />
+						</div>
+						<div className='bottom-section'>
+							<div className='section-container'>
+								<LoopIntervals />
+							</div>
+							<div className='section-container'>
+								<DrumPads setDisplay={setDisplay} />
+								<RecordPads />
+							</div>
 
-  return (
-    <div className="app-container">
-      <div className="outer-border flex-container">
-        <div className="inner-border flex-container">
-          <div className="main-container">
-            <div className="top-section">
-              <MainDisplay />
-            </div>
-            <div className="bottom-section">
-              <div className="section-container">
-                <LoopIntervals />
-              </div>
-              <div className="section-container">
-                <DrumPads setDisplay={setDisplay}/>
-                <RecordPads />
-              </div>
-          
-              <div className="section-container">
-                <RecBoard />
-              </div>
-            </div>
-          
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+							<div className='section-container'>
+								<RecBoard />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
 
-export default connect(state => ({controlMode: state.controlMode}), null)(App);
+export default connect(
+	(state) => ({ controlMode: state.controlMode }),
+	null
+)(App);

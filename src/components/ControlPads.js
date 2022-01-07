@@ -1,32 +1,28 @@
-import {connect} from 'react-redux'
-import IntervalControl from './IntervalControl'
-import OngoingPads from './OngoingPads'
-import RecBoard from './RecBoard'
-import {RECORD, PLAY, INTERVAL} from '../actions/actionTypes'
-import "../css/DrumPads.css"
+import { connect } from 'react-redux';
+import IntervalControl from './IntervalControl';
+import OngoingPads from './OngoingPads';
+import RecBoard from './RecBoard';
+import { RECORD, PLAY, INTERVAL } from '../actions/actionTypes';
+import '../css/DrumPads.css';
 
-function ComponentPicker(mode){
-    switch(mode){
-        case PLAY:
-            return <OngoingPads />
-        case RECORD:
-            return <RecBoard />
-        case INTERVAL:
-            return <IntervalControl />
-        default:
-            return <OngoingPads />
-    }
+function ComponentPicker(mode) {
+	switch (mode) {
+		case PLAY:
+			return <OngoingPads />;
+		case RECORD:
+			return <RecBoard />;
+		case INTERVAL:
+			return <IntervalControl />;
+		default:
+			return <OngoingPads />;
+	}
 }
 
-function ControlPads({controlMode}){
-   
-
-    return(
-        <div>
-            {ComponentPicker(controlMode)}
-        </div>
-    )
-
+function ControlPads({ controlMode }) {
+	return <div>{ComponentPicker(controlMode)}</div>;
 }
 
-export default connect(state => ({controlMode: state.controlMode}), null)(ControlPads)
+export default connect(
+	(state) => ({ controlMode: state.controlMode }),
+	null
+)(ControlPads);

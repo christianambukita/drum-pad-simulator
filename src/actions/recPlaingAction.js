@@ -1,11 +1,11 @@
-function recPlayingAction(type,record, index){
-    return({
-        type,
-        payload:{
-            record,
-            index
-        }
-    })
+function recPlayingAction(type, record, index) {
+	return {
+		type,
+		payload: {
+			record,
+			index,
+		},
+	};
 }
 
-export default recPlayingAction
+export default recPlayingAction;

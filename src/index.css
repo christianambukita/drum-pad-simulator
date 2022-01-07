@@ -1,40 +1,38 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap');
 
-:root{
-  --retro-main: rgb(204, 204, 204);
-  --retro-shadow-0: hsl(0, 0%, 43%);
-  --retro-shadow-1: hsl(0, 0%, 50%);
-  --retro-shadow-2: hsl(0, 0%, 75%);
-  --retro-shadow-3: hsl(0, 0%, 83%);
-  --retro-display:  hsl(0, 0%, 14%);
-  --retro-border:  hsl(0, 0%, 36%);
-  --diode-active: hsl(39, 100%, 75%);
-  --diode-active-shadow: hsl(30, 100%, 50%);
-  --list-item-active: hsl(39, 75%, 50%);
-  --diode-inactive: hsl(91, 100%, 77%);
-  --diode-inactive-shadow: hsl(91, 100%, 40%);
-  --btn-color-1: hsl(0, 0%, 50%);
-  --diode-disabled: hsl(0, 0%, 20%);
+:root {
+	--retro-main: rgb(204, 204, 204);
+	--retro-shadow-0: hsl(0, 0%, 43%);
+	--retro-shadow-1: hsl(0, 0%, 50%);
+	--retro-shadow-2: hsl(0, 0%, 75%);
+	--retro-shadow-3: hsl(0, 0%, 83%);
+	--retro-display: hsl(0, 0%, 14%);
+	--retro-border: hsl(0, 0%, 36%);
+	--diode-active: hsl(39, 100%, 75%);
+	--diode-active-shadow: hsl(30, 100%, 50%);
+	--list-item-active: hsl(39, 75%, 50%);
+	--diode-inactive: hsl(91, 100%, 77%);
+	--diode-inactive-shadow: hsl(91, 100%, 40%);
+	--btn-color-1: hsl(0, 0%, 50%);
+	--diode-disabled: hsl(0, 0%, 20%);
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+		'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+		sans-serif;
 
-
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; 
+	-webkit-touch-callout: none; /* iOS Safari */
+	-webkit-user-select: none; /* Safari */
+	-khtml-user-select: none; /* Konqueror HTML */
+	-moz-user-select: none; /* Old versions of Firefox */
+	-ms-user-select: none; /* Internet Explorer/Edge */
+	user-select: none;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+		monospace;
 }
-
