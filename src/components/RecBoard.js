@@ -41,7 +41,6 @@ function RecBoard({
 		);
 	}, [recMode]);
 
-	console.table(records);
 	return (
 		<div className='rec-board-container'>
 			<div id='rec-board'>

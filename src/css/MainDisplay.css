@@ -1,15 +1,16 @@
 .main-display-container {
 	background: var(--retro-main);
 	width: 100%;
-	padding: 30px 0px;
+	padding: 2em 0px;
 }
 
 .main-display {
 	font-family: 'VT323', monospace;
-	width: 800px;
-	height: 160px;
+	width: 50em;
+	height: 10em;
 	background: var(--retro-display);
-	padding: 10px;
+	padding: 0.625em;
+	font-size: inherit;
 }
 
 .main-display-header {

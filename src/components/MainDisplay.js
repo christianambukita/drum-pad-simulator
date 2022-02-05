@@ -54,7 +54,6 @@ function MainDisplay({ recMode }) {
 	}
 	useEffect(() => {
 		setMsg(display.messages[counter]);
-		console.log(counter);
 		startLoop();
 	}, [counter]);
 

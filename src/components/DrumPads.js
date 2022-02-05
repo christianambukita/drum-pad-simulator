@@ -66,9 +66,7 @@ function DrumPads({
 		setRecKey({ activeRecKey, oldRecKey: recKeyStatus.activeRecKey });
 	}, [recMode]);
 
-	console.log(recKeyStatus);
 	function singleAudioPlay(key) {
-		console.log(key);
 		let pad = document.getElementById(key.toLocaleUpperCase());
 		pad.classList.add('pad-active');
 		pad.classList.add('pad-playing');
@@ -84,7 +82,6 @@ function DrumPads({
 	}
 
 	function onPlay(interval, key) {
-		console.log(key);
 		let pad = document.getElementById(key.toLocaleUpperCase());
 		pad.classList.add('pad-active');
 		pad.classList.add('pad-playing');

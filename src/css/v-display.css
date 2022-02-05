@@ -1,11 +1,13 @@
 .v-display-shadow {
-	border-top: 15px solid var(--retro-shadow-0);
-	border-left: 15px solid var(--retro-shadow-1);
-	border-right: 15px solid var(--retro-shadow-2);
-	border-bottom: 15px solid var(--retro-shadow-3);
+	font-size: var(--main-font-size);
+	border-top: 0.93em solid var(--retro-shadow-0);
+	border-left: 0.93em solid var(--retro-shadow-1);
+	border-right: 0.93em solid var(--retro-shadow-2);
+	border-bottom: 0.93em solid var(--retro-shadow-3);
 }
 
 .v-display-border {
+	font-size: var(--main-font-size);
 	border: 2px solid var(--retro-border);
 	margin: 5px;
 	border-radius: 2px;

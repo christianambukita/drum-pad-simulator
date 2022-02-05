@@ -1,34 +1,32 @@
 .pad-container {
-	width: 100px;
-	height: 100px;
 }
 
 .drum-pad {
-	width: 76px;
-	height: 76px;
-	border-radius: 10px;
+	width: 4.75em;
+	height: 4.75em;
+	border-radius: 0.625em;
 	overflow: hidden;
 	background-color: var(--retro-main);
 	transition-duration: scale 0.15s;
 	transition: color 0.15s ease-in-out;
 	color: var(--diode-disabled);
 	font-weight: 600;
-	border: 2px solid var(--retro-border);
+	border: 0.125em solid var(--retro-border);
 	justify-content: space-between;
 	align-items: flex-start;
-	padding: 5px 7px;
+	padding: 0.3em 0.44em;
 }
 
 .pad-border {
 	box-sizing: border-box;
-	width: 100px;
-	height: 100px;
+	width: 6.25em;
+	height: 6.25em;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding: 8px;
-	border-radius: 10px;
-	border: 2px solid var(--retro-border);
+	padding: 0.5em;
+	border-radius: 0.625em;
+	border: 0.125em solid var(--retro-border);
 	background: linear-gradient(
 		135deg,
 		var(--retro-main) 45%,
@@ -47,22 +45,22 @@
 
 .pad-diode {
 	background: var(--diode-inactive);
-	box-shadow: 0 0 6px 1px var(--diode-inactive-shadow);
-	width: 7px;
-	height: 7px;
+	box-shadow: 0 0 0.375em 0.0625em var(--diode-inactive-shadow);
+	width: 0.44em;
+	height: 0.44em;
 	border-radius: 50%;
-	margin: 4px;
+	margin: 0.25em;
 }
 
 .pad-playing .drum-pad {
 	color: var(--diode-active);
-	text-shadow: 0 0 4px var(--diode-active-shadow);
+	text-shadow: 0 0 0.25em var(--diode-active-shadow);
 	transition: color 0s;
 }
 
 .pad-playing .pad-diode {
 	background: var(--diode-active);
-	box-shadow: 0 0 4px 1px var(--diode-active-shadow);
+	box-shadow: 0 0 0.25em 0.0625em var(--diode-active-shadow);
 }
 
 .pad-disabled .pad-diode {
