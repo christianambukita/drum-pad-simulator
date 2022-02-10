@@ -92,9 +92,6 @@ function DrumPads({
 			[key]: interId,
 		};
 		setSoundInter(newState);
-
-		console.log('let :' + newState[key]);
-		console.log('state :' + soundInter);
 	}
 
 	function ongoingAudioPlay(key, intervals) {
@@ -131,14 +128,12 @@ function DrumPads({
 			time,
 		});
 
-		console.table(newState);
 		setRecord(recKey, newState);
 	}
 
 	function handleKeypress(key) {
 		let activeRecKey = recKeyStatus.activeRecKey;
 
-		console.log(activeRecKey, key);
 		if (activeRecKey && Object.keys(audioKeys).includes(key)) {
 			let reset = false;
 			if (activeRecKey !== recKeyStatus.oldRecKey) {

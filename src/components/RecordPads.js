@@ -137,34 +137,36 @@ function RecordPads({
 
 	function recPlayCallback(i, arr, key, pad) {
 		setRecPlaing(REC_PLAING_REM, key, i);
-		if (i + 1 === arr.length) {
-			pad.classList.remove('pad-playing');
+		if (!onGoing[key]) {
+			if (i + 1 === arr.length) {
+				pad.classList.remove('pad-playing');
+			}
 		}
 	}
 
 	function multiPlay(key, pad, isOngoing = false) {
-		pad.classList.add('pad-active');
-		setTimeout(() => pad.classList.remove('pad-active'), 150);
+		if (!isOngoing) {
+			pad.classList.add('pad-active');
+			setTimeout(() => pad.classList.remove('pad-active'), 150);
+		}
+
+		pad.classList.add('pad-playing');
 		records[key].forEach((rec, i, arr) => {
-			if (!isOngoing) pad.classList.add('pad-playing');
 			let time = rec.time;
 
 			setTimeout(() => {
 				document.getElementById(`${key}-${i}`).scrollIntoView(false);
+				setRecPlaing(REC_PLAING_ADD, key, i);
 				play(rec.key).then(() => {
-					isOngoing
-						? setRecPlaing(REC_PLAING_ADD, key, i)
-						: recPlayCallback(i, arr, key, pad);
+					recPlayCallback(i, arr, key, pad);
 				});
-				!isOngoing && setRecPlaing(REC_PLAING_ADD, key, i);
 			}, time);
 		});
 	}
 
-	function onPlay(interval, key) {
-		console.log('setting up interval ');
-		multiPlay(key, '', true); // to avoid first delay from setInerval
-		let interId = setInterval(() => multiPlay(key, '', true), interval);
+	function onPlay(interval, key, pad) {
+		multiPlay(key, pad, false); // to avoid first delay from setInerval
+		let interId = setInterval(() => multiPlay(key, pad, true), interval);
 		let newState = {
 			...soundInter,
 			[key]: interId,
@@ -172,11 +174,18 @@ function RecordPads({
 		setSoundInter(newState);
 	}
 
-	function ongoingAudioPlay(key, intervals) {
-		onPlay(intervals[key], key);
+	function ongoingAudioPlay(key, intervals, pad) {
+		onPlay(intervals[key], key, pad);
 	}
 
-	function clearOngoing(key) {
+	function clearOngoing(key, keyAnimation = false) {
+		let pad = document.getElementById(key.toLocaleUpperCase());
+		pad.classList.remove('pad-playing');
+
+		if (keyAnimation) {
+			pad.classList.add('pad-active');
+			setTimeout(() => pad.classList.remove('pad-active'), 150);
+		}
 		clearInterval(soundInter[key]);
 		if (soundInter[key]) {
 			let newState = {
@@ -187,29 +196,25 @@ function RecordPads({
 		}
 	}
 
+	//clear all queued intervals of keys that arent ongoing any more
 	useEffect(() => {
-		Object.keys(soundInter).forEach((key) =>
-			controlMode === RECORD
-				? clearOngoing(key)
-				: !onGoing[key] && clearOngoing(key)
+		Object.keys(soundInter).forEach(
+			(key) => !onGoing[key] && clearOngoing(key)
 		);
-	}, [onGoing, controlMode]);
+	}, [onGoing]);
 
 	function handleKeypress({ key }) {
 		let activeRecKey = recKeyStatus.activeRecKey;
-
 		const recEnabled = records[`rec${key}`]
 			? records[`rec${key}`].length !== 0
 			: false;
-		console.log(key);
 		if (!activeRecKey && recEnabled) {
 			let recDataKey = `rec${key}`;
 			let pad = document.getElementById(recDataKey.toUpperCase());
-
-			if (controlMode !== RECORD && onGoing[recDataKey]) {
+			if (onGoing[recDataKey]) {
 				soundInter[recDataKey]
-					? clearOngoing(recDataKey)
-					: ongoingAudioPlay(recDataKey, intervals);
+					? clearOngoing(recDataKey, true)
+					: ongoingAudioPlay(recDataKey, intervals, pad);
 			} else {
 				multiPlay(recDataKey, pad);
 			}
