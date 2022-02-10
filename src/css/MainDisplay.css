@@ -6,7 +6,7 @@
 
 .main-display {
 	font-family: 'VT323', monospace;
-	width: 50em;
+	width: 49em;
 	height: 10em;
 	background: var(--retro-display);
 	padding: 0.625em;

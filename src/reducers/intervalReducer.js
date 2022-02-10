@@ -10,9 +10,9 @@ const initialState = {
 	z: 500,
 	x: 500,
 	c: 500,
-	rec1: 1500,
-	rec2: 1500,
-	rec3: 1500,
+	rec1: 1000,
+	rec2: 1000,
+	rec3: 1000,
 };
 
 function intervalReducer(state = initialState, action) {

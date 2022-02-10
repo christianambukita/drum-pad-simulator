@@ -164,7 +164,7 @@ function RecordPads({
 		});
 	}
 
-	function onPlay(interval, key, pad) {
+	function ongoingPlay(interval, key, pad) {
 		multiPlay(key, pad, false); // to avoid first delay from setInerval
 		let interId = setInterval(() => multiPlay(key, pad, true), interval);
 		let newState = {
@@ -174,8 +174,10 @@ function RecordPads({
 		setSoundInter(newState);
 	}
 
-	function ongoingAudioPlay(key, intervals, pad) {
-		onPlay(intervals[key], key, pad);
+	function ongoingPlayWrap(key, intervals, pad) {
+		const recDuration = records[key].at(-1).time; //time of last recorded sound in recording
+		const combinedInterval = intervals[key] + recDuration;
+		ongoingPlay(combinedInterval, key, pad);
 	}
 
 	function clearOngoing(key, keyAnimation = false) {
@@ -214,7 +216,7 @@ function RecordPads({
 			if (onGoing[recDataKey]) {
 				soundInter[recDataKey]
 					? clearOngoing(recDataKey, true)
-					: ongoingAudioPlay(recDataKey, intervals, pad);
+					: ongoingPlayWrap(recDataKey, intervals, pad);
 			} else {
 				multiPlay(recDataKey, pad);
 			}

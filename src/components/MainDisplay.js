@@ -12,7 +12,7 @@ const DISPLAY_MSGS = {
 		header: 'MODE: RECORD',
 		messages: [
 			`Use keys to record melody. Press ${key.toUpperCase()} to stop recording.`,
-			'testMsg',
+			'Record play buttons [R1, R2, R3] are disabled during recording',
 		],
 	}),
 	play: {
@@ -20,7 +20,8 @@ const DISPLAY_MSGS = {
 		messages: [
 			'To loop sound activate specific key on left panel and set time interval',
 			'To start recording press one of REC buttons',
-			'Record play buttons will be enabled once corresponding record is created',
+			'Record play buttons will be enabled once corresponding recording is created',
+			'Recordings loop interval time is increased by recordings duration',
 		],
 	},
 };
@@ -29,8 +30,8 @@ function MainDisplay({ recMode }) {
 	const [display, setDisplay] = useState(DISPLAY_MSGS.play);
 	const [msg, setMsg] = useState('');
 	const [counter, setCounter] = useState(0);
-	const [timeout, _setTimeout] = useState(undefined);
-	const displayInterval = 10000;
+	const [interval, _setInterval] = useState();
+	const displayInterval = 8000;
 
 	useEffect(() => {
 		let recActive = false;
@@ -45,24 +46,28 @@ function MainDisplay({ recMode }) {
 	}, [recMode]);
 
 	//display loop
-	function startLoop(newCount = counter + 1) {
-		const T = setTimeout(() => {
-			if (counter < display.messages.length - 1) setCounter(newCount);
-			else setCounter(0);
+	function startLoop() {
+		setMsg(display.messages[0]);
+		let counter = 0;
+		setCounter(counter);
+		const newInterval = setInterval(() => {
+			if (counter < display.messages.length - 1) counter++;
+			else counter = 0;
+			setCounter(counter);
 		}, displayInterval);
-		_setTimeout(T);
+		_setInterval(newInterval);
 	}
+
+	// restart loop on display change
+	useEffect(() => {
+		if (interval) clearInterval(interval);
+		startLoop();
+	}, [display]);
+
+	// update displayed message
 	useEffect(() => {
 		setMsg(display.messages[counter]);
-		startLoop();
 	}, [counter]);
-
-	useEffect(() => {
-		setMsg(display.messages[0]);
-		clearTimeout(timeout);
-		setCounter(0);
-		startLoop(1);
-	}, [display]);
 
 	return (
 		<div className='main-display-container flex-container'>
