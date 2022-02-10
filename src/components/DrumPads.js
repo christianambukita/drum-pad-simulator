@@ -17,7 +17,6 @@ function play(key) {
 }
 
 function DrumPads({
-	setDisplay,
 	onGoingMode,
 	intervals,
 	controlMode,
@@ -72,7 +71,6 @@ function DrumPads({
 		pad.classList.add('pad-playing');
 
 		setTimeout(() => pad.classList.remove('pad-active'), 150);
-		setDisplay(key);
 
 		let soundId = nanoid();
 		soundsId[key].id = soundId;

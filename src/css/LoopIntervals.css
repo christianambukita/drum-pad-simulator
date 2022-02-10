@@ -43,6 +43,7 @@
 	width: 1.6em;
 	border-radius: 0.25em;
 	background: var(--retro-main);
+	padding: 0;
 }
 .ctrl-btn:nth-child(1) {
 	border-top-right-radius: 0;

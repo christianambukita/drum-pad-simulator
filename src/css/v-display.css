@@ -8,7 +8,7 @@
 
 .v-display-border {
 	font-size: var(--main-font-size);
-	border: 2px solid var(--retro-border);
-	margin: 5px;
-	border-radius: 2px;
+	border: 0.125em solid var(--retro-border);
+	margin: 0.3125em;
+	border-radius: 0.125em;
 }

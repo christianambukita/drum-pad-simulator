@@ -3,7 +3,7 @@
 :root {
 	--main-border-radius: 3.125em;
 	--main-border-width: 1.875em;
-	--main-font-size: 10px;
+	--main-font-size: 16px;
 }
 
 * {
@@ -24,10 +24,11 @@ body {
 }
 
 .app-container {
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	margin-top: 10px;
+	margin-top: 0.625em;
 }
 
 .main-container {
@@ -119,4 +120,40 @@ body {
 
 .space-between p {
 	margin: 0;
+}
+
+.flip-message {
+	display: none;
+}
+
+@media (max-width: 1200px), (max-height: 765px) {
+	:root {
+		--main-font-size: 12px;
+	}
+}
+
+@media (max-width: 880px), (max-height: 585px) {
+	:root {
+		--main-font-size: 10px;
+	}
+}
+
+@media (max-width: 750px), (max-height: 500px) {
+	:root {
+		--main-font-size: min(1.4vw, 2vh);
+	}
+
+	.app-container {
+		height: 90vh;
+		justify-content: space-around;
+		flex-direction: column;
+	}
+
+	.flip-message {
+		font-size: 30px;
+		color: white;
+		gap: 20px;
+		display: flex;
+		align-items: center;
+	}
 }
