@@ -1,8 +1,6 @@
-import { audioKeys } from '../pad_data';
 import { connect } from 'react-redux';
 import modeActionCreator from '../actions/controlActionCreator';
 import {
-	REC_MODE,
 	ONGOING_MODE,
 	INTER_INCREMENT,
 	INTER_DECREMENT,
@@ -10,6 +8,7 @@ import {
 import '../css/DrumPads.css';
 import '../css/LoopIntervals.css';
 import '../css/v-display.css';
+import { useEffect, useState } from 'react';
 
 const mapStateToProps = (state) => ({
 	onGoingPads: state.onGoing,
@@ -19,9 +18,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		changeRecMode: (key) => {
-			dispatch(modeActionCreator(key, REC_MODE));
-		},
 		toggleOngoingMode: (key) => {
 			dispatch(modeActionCreator(key, ONGOING_MODE));
 		},
@@ -40,7 +36,17 @@ function LoopIntervals({
 	decrementInterval,
 	onGoingPads,
 	intervals,
+	recMode,
 }) {
+	const [recModeOn, setRecMode] = useState(false);
+
+	useEffect(() => {
+		let newRecMode = false;
+		Object.keys(recMode).forEach((key) => {
+			if (recMode[key]) newRecMode = true;
+		});
+		setRecMode(newRecMode);
+	}, [recMode]);
 	return (
 		<div className='loop-container'>
 			<div className='interval-container flex-container'>
@@ -49,7 +55,9 @@ function LoopIntervals({
 						<button
 							className={'inter-button' + (onGoingPads[key] ? ' active' : '')}
 							key={`inter-btn-${key}`}
-							onClick={() => toggleOngoingMode(key)}>
+							onClick={() => {
+								if (!recModeOn) toggleOngoingMode(key);
+							}}>
 							{key.toUpperCase()}
 						</button>
 					))}
@@ -57,10 +65,7 @@ function LoopIntervals({
 				<div className='v-display-border display-margin'>
 					<div className='inter-display flex-container v-display-shadow'>
 						{Object.keys(intervals).map((key) => (
-							<div
-								className='display-elem'
-								key={`inter-display-${key}`}
-								onClick={() => toggleOngoingMode(key)}>
+							<div className='display-elem' key={`inter-display-${key}`}>
 								{intervals[key]}
 							</div>
 						))}

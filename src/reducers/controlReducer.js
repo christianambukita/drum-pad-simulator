@@ -31,7 +31,6 @@ export const onGoingModeReducer = (state = onGoingMode, action) => {
 	switch (action.type) {
 		case ONGOING_MODE:
 			let key = action.payload.key;
-			console.log(key);
 			return { ...state, [key]: !state[key] };
 		case ONGOING_MODE_RESET:
 			return { ...state, ...onGoingMode };
